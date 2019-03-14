@@ -11,14 +11,7 @@
 #import <React/RCTConvert.h>
 #import <React/RCTBridge.h>
 #import <React/RCTUtils.h>
-#else // Compatibility for RN version < 0.40
-#import "RCTUtils.h"
-#endif
-#if __has_include(<React/RCTFont.h>)
 #import <React/RCTFont.h>
-#else // Compatibility for RN version < 0.40
-#import "RCTFont.h"
-#endif
 
 @implementation RNVectorIconsManager
 
