@@ -4,14 +4,8 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-} from 'react-native';
+import React, { PureComponent } from 'react';
+import { AppRegistry, StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconSetList from './IconSetList';
@@ -42,18 +36,19 @@ const styles = StyleSheet.create({
   },
 });
 
-class Welcome extends Component {
+class Welcome extends PureComponent {
   render() {
     return (
       <View style={styles.welcomeWrapper}>
-        <Text style={styles.welcomeText}>Choose an icon set on the left side</Text>
+        <Text style={styles.welcomeText}>
+          Choose an icon set on the left side
+        </Text>
       </View>
     );
   }
 }
 
-class IconExplorer extends Component {
-
+class IconExplorer extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -66,15 +61,24 @@ class IconExplorer extends Component {
     const { iconSet, iconSetTitle, layout } = this.state;
 
     return (
-      <View style={styles.container} onLayout={(e) => this.setState({layout: e.nativeEvent.layout})}>
+      <View
+        style={styles.container}
+        onLayout={e => this.setState({ layout: e.nativeEvent.layout })}
+      >
         <View style={styles.leftPanel}>
-          <IconSetList navigator={{ push: (route) => this.setState({ iconSet: route.iconSet }) }}/>
+          <IconSetList
+            navigator={{
+              push: route => this.setState({ iconSet: route.iconSet }),
+            }}
+          />
         </View>
-        <View style={[styles.rightPanel, { width: layout.width - LEFT_PANEL_WIDTH }]}>
-          {(iconSet
-            ? (<IconList iconSet={iconSet} />)
-            : (<Welcome />)
-          )}
+        <View
+          style={[
+            styles.rightPanel,
+            { width: layout.width - LEFT_PANEL_WIDTH },
+          ]}
+        >
+          {iconSet ? <IconList iconSet={iconSet} /> : <Welcome />}
         </View>
       </View>
     );
