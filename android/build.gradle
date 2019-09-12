@@ -36,5 +36,5 @@ repositories {
 }
 
 dependencies {
-  api project(':ReactAndroid')
+  api "com.facebook.react:react-native:+"
 }
